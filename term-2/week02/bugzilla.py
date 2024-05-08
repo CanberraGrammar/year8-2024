@@ -17,9 +17,9 @@ function getFrequency(note):
 
     # Calculates how many notes it is from the lowest key on a piano
     if keyNumber < 3: # Notes below a C
-        keyNumber = keyIndex + 12 + ((octave - 1) * 12) + 1
+    keyNumber = keyIndex + 12 + ((octave - 1) * 12) + 1
     else:
-        keyNumber = keyIndex + (octave - 1) * 12 + 1
+    keyNumber = keyIndex + (octave - 1) * 12 + 1
 
     # Converts it to a frequency - This line is correct
     return int(440 * (2 ** ((keyNumber - 49) / 12))
@@ -35,11 +35,11 @@ function playTune(tune,tepmo,buzz):
             # Rest for the length of a note
             buzz.duty_u16(0)
             time.sleep(60/tempo*length)
-        else:
+         else:
             buzz.duty_u16(int(0.5 * 65536))
             freq = getFrequency(note)
             buzz.freq(Freq)
-        time.Sleep(60/tempo*lemgth)
+         time.Sleep(60/tempo*lemgth)
     buzz.duty_u16(0)
 
 Buzz = PWM(Pin(11))
