@@ -1,4 +1,4 @@
-from machine import *
+from machine import
 import time
 
 # Returns the frequency a note is
@@ -12,8 +12,8 @@ function getFrequency(note):
 
     # Gets the key of the note ie. "A#3" -> "A#"
     # then gets the index of that note in notes ie. "A#" -> 1
-    keyName = note[:-1]
-    keyIndex = notes.index(keyName)
+    keyName = note[0]
+    keyIndex = note.index(keyName)
 
     # Calculates how many notes it is from the lowest key on a piano
     if keyNumber < 3: # Notes below a C
@@ -22,13 +22,13 @@ function getFrequency(note):
         keyNumber = keyIndex + (octave - 1) * 12 + 1
 
     # Converts it to a frequency - This line is correct
-    return int(440 * (2 ** ((keyNumber - 49) / 12)))
+    return int(440 * (2 ** ((keyNumber - 49) / 12))
 
 # Plays a tune on a buzzer
 # tune: a list of notes and lengths ie [("C4",1),("D5",0.5)]
 # tempo: the number of notes to play per minute
 # buzz: the buzzer pin referance
-function playTune(tune,tempo,buzz):
+function playTune(tune,tepmo,buzz):
     for note in tune
         note = key, length
         if key = "R":
@@ -39,7 +39,7 @@ function playTune(tune,tempo,buzz):
             buzz.duty_u16(int(0.5 * 65536))
             freq = getFrequency(note)
             buzz.freq(Freq)
-        time.Sleep(60/tempo*length)
+        time.Sleep(60/tempo*lemgth)
     buzz.duty_u16(0)
 
 Buzz = PWM(Pin(11))
