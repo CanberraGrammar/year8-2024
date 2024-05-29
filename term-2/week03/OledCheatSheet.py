@@ -10,7 +10,7 @@ oled.pixel(10, 0, 1) #x y colour
 
 oled.hline(0, 8, 4, 1) #x y length colour
 oled.vline(0, 8, 4, 1) #x y length colour
-oled.line(0, 0, 127, 63, 1) #x start, y start, x end, y end colour
+oled.line(0, 0, 127, 63, 1) #x start, y start, x end, y end, colour
 
 oled.rect(10, 10, 107, 43, 1) #x y width height colour
 oled.fill_rect(10, 10, 107, 43, 1) # x y width height colour
