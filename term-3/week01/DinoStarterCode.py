@@ -18,25 +18,8 @@ dinoVY = 0
 dinoAY = 0.15
 dinoWidth = 8
 dinoHeight = 16
- 
-def drawFloor():
-    pass
-def drawDino():
-    pass
-def drawObstacles():
-    pass
-def drawScore():
-    pass
-def moveObstacles():
-    pass
-def generateObstacles():
-    pass
-def moveDino():
-    pass
-def checkIfHit():
-    pass
-def checkButtons():
-    pass
+
+obstacles = []
 
 while True:
  
@@ -54,15 +37,6 @@ while True:
         oled.fill(0)
  
         # Call functions for the game here
-        drawFloor()
-        drawDino()
-        drawObstacles()
-        drawScore()
-        moveObstacles()
-        generateObstacles()
-        moveDino()
-        checkIfHit()
-        checkButtons()
  
         oled.show()    
         endtime = time.ticks_ms()
