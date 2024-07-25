@@ -182,7 +182,11 @@ isSnakeColliding([(2,1),(3,1),(3,0),(2,0),(2,1),(2,2),(2,2)]) == True
 isSnakeColliding([(5,4),(4,4),(3,4),(3,5),(3,6),(2,6)]) == False
 
 '''
+
 def isSnakeColliding(snake):
+    for square in snake[1:]:
+        if snake[0] == square:
+            return True
     return False
 
 '''
@@ -204,7 +208,17 @@ isSnakeOffScreen([(16,4),(4,4),(3,4),(3,5)]) == True
 isSnakeOffScreen([(5,-1),(4,4),(2,4),(4,5),(3,4),(2,6)]) == True
 '''
 def isSnakeOffScreen(snake):
-    return False
+    x,y = snake[0]
+    if x < 0:
+        return True
+    elif x > 15:
+        return True
+    elif y < 0:
+        return True
+    elif y > 7:
+        return True
+    else:
+        return False
 
 '''
 --- Extension Tasks ---
@@ -253,3 +267,6 @@ else:
         drawSnake(snake)
         drawFruits(fruit)
         oled.show()
+    print(snake)
+    print(isSnakeColliding(snake))
+    print(isSnakeOffScreen(snake))
