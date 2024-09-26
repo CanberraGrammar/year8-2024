@@ -28,11 +28,11 @@ connection.listen(1)
 while True:
     client = connection.accept()[0]
     request = str(client.recv(1024))
-    path = request.split()[1]
-    print(path)
+    if len(request.split()[1] >= 2):
+        path = request.split()[1]
+        print(path)
         
     html = open("draw.html").read()
-    
     client.send(html)
     client.close()
 
