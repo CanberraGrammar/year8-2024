@@ -6,13 +6,9 @@ from machine import *
 ssid = "CC-Y8"
 password = "raspberrypi"
 
-colours = ["red", "yellow", "green"]
-leds = []
-
-i = 0
-while i < len(colours):
-    leds.append(Pin(i,Pin.OUT))
-    i = i + 1
+redLed = Pin(0,Pin.OUT)
+yellowLed = Pin(1,Pin.OUT)
+greenLed = Pin(2,Pin.OUT)
 
 #Connect to WLAN 
 wlan = network.WLAN(network.STA_IF) 
@@ -35,35 +31,40 @@ while True:
     print(request)
     path = request.split()[1]
     print(path)
-
-    for i in range(len(leds)):
-        colour = colours[i]
-        if path == "/"+colour+"on?":
-            leds[i].on()
-        elif path == "/"+colour+"off?":
-            leds[i].off()
-                
-    html = '''<html>
-      <head>
-      </head>
-      <body>'''
+    if path == "/redon?":
+        redLed.on()
+    elif path == "/redoff?":
+        redLed.off()
+    elif path == "/yellowon?":
+        yellowLed.on()
+    elif path == "/yellowoff?":
+        yellowLed.off()
+    elif path == "/greenon?":
+        greenLed.on()
+    elif path == "/greenoff?":
+        greenLed.off()
+        
+    html = open("led.html").read()
+    if redLed.value() == 1:
+        html = html.replace("{redStatus}", "on")
+        html = html.replace("{redAction}", "off")
+    else:
+        html = html.replace("{redStatus}", "off")
+        html = html.replace("{redAction}", "on")
     
-    for i in range(len(colours)):
-        colour = colours[i]
-        if leds[i].value() == 1:
-            html = html + '<form method="get" action="/'+colour+'off">'
-            html = html + '<label>'+colour+' LED is on</label>'
-            html = html + '<input type="submit" value="Turn '+colour+' LED off">'
-            html = html + '</form>'
-        else:
-            html = html + '<form method="get" action="/'+colour+'on">'
-            html = html + '<label>'+colour+' LED is off</label>'
-            html = html + '<input type="submit" value="Turn '+colour+' LED on">'
-            html = html + '</form>'
-    
-    html = html + '''
-      </body>
-    </html>'''
+    if yellowLed.value() == 1:
+        html = html.replace("{yellowStatus}", "on")
+        html = html.replace("{yellowAction}", "off")
+    else:
+        html = html.replace("{yellowStatus}", "off")
+        html = html.replace("{yellowAction}", "on")
+        
+    if greenLed.value() == 1:
+        html = html.replace("{greenStatus}", "on")
+        html = html.replace("{greenAction}", "off")
+    else:
+        html = html.replace("{greenStatus}", "off")
+        html = html.replace("{greenAction}", "on")
     
     client.send(html)
     client.close()
