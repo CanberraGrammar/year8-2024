@@ -30,8 +30,17 @@ while True:
     request = str(client.recv(1024))
     if len(request.split()) >= 2:
         path = request.split()[1]
-        print(path)
         
+        split = path[2:].split("&")
+        if len(split) >= 4:
+            x = int(split[0].split("=")[1])
+            y = int(split[1].split("=")[1])
+            width = int(split[2].split("=")[1])
+            height = int(split[3].split("=")[1])
+            
+            oled.fill_rect(x,y,width,height,1)
+            oled.show()
+            
     html = open("draw.html").read()
     client.send(html)
     client.close()
