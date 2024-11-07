@@ -52,5 +52,3 @@ while True:
     
     client.send(html)
     client.close()
-
-
