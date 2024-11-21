@@ -41,5 +41,3 @@ def getRequest(ip, path):
     return response
     s.close()
     
-
-
